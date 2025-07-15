@@ -1,87 +1,87 @@
-# Sentinel.sol - AI Destekli Akıllı Kontrat Güvenlik Analizörü
+# Sentinel.sol - AI-Powered Smart Contract Security Analyzer
 
-![Sentinel.sol Banner](https://via.placeholder.com/800x200/0A0A0A/FFFFFF?text=Sentinel.sol+-+AI+G%C3%BCvenlik+Analiz%C3%B6r%C3%BC)
+![Sentinel.sol Banner](https://via.placeholder.com/800x200/0A0A0A/FFFFFF?text=Sentinel.sol+-+AI+Security+Analyzer)
 
-## 🛡️ Nedir?
+## 🛡️ What is Sentinel.sol?
 
-Sentinel.sol, Web3 kullanıcılarının akıllı kontratlarla güvenli bir şekilde etkileşime girmelerine yardımcı olan AI destekli bir güvenlik analizörüdür. Google Gemini AI'ın gücünü kullanarak, herhangi bir akıllı kontratı saniyeler içinde analiz eder ve potansiyel güvenlik risklerini herkesin anlayabileceği bir dilde raporlar.
+Sentinel.sol is an AI-powered security analyzer that helps Web3 users interact safely with smart contracts. Using the power of Google Gemini AI, it analyzes any smart contract in seconds and reports potential security risks in language everyone can understand.
 
-## ✨ Özellikler
+## ✨ Features
 
-- 🤖 **AI Destekli Analiz**: Google Gemini AI ile derinlemesine güvenlik analizi
-- 🔗 **Çoklu Zincir Desteği**: Ethereum, BNB Chain ve Polygon
-- ⚡ **Hızlı Sonuçlar**: 10-20 saniyede kapsamlı analiz raporu
-- 📊 **Görsel Risk Seviyeleri**: Düşük, Orta, Yüksek risk kategorileri
-- 🌐 **Türkçe Dil Desteği**: Tamamen Türkçe arayüz ve raporlar
-- 📱 **Responsive Tasarım**: Tüm cihazlarda mükemmel görünüm
+- 🤖 **AI-Powered Analysis**: Deep security analysis with Google Gemini AI
+- 🔗 **Multi-Chain Support**: Ethereum, BNB Chain, and Polygon
+- ⚡ **Fast Results**: Comprehensive analysis report in 10-20 seconds
+- 📊 **Visual Risk Levels**: Low, Medium, High risk categories
+- 🌐 **Multi-Language Support**: Clean and intuitive interface
+- 📱 **Responsive Design**: Perfect display on all devices
 
-## 🚀 Nasıl Çalışır?
+## 🚀 How It Works
 
-1. **Kontrat Adresi Girin**: 0x ile başlayan akıllı kontrat adresini yapıştırın
-2. **Blockchain Seçin**: Ethereum, BNB Chain veya Polygon'dan birini seçin
-3. **Analiz Başlatın**: AI analizi otomatik olarak başlar
-4. **Raporu İnceleyin**: Detaylı güvenlik raporu ve önerileri alın
+1. **Enter Contract Address**: Paste the smart contract address starting with 0x
+2. **Select Blockchain**: Choose from Ethereum, BNB Chain, or Polygon
+3. **Start Analysis**: AI analysis begins automatically
+4. **Review Report**: Get detailed security report and recommendations
 
-## 🔧 Kurulum
+## 🔧 Installation
 
-### Gereksinimler
+### Requirements
 
 - Node.js 16+ 
-- NPM veya Yarn
-- API Anahtarları (ücretsiz):
+- NPM or Yarn
+- API Keys (free):
   - [Etherscan API](https://etherscan.io/apis)
   - [BSCScan API](https://bscscan.com/apis)
   - [PolygonScan API](https://polygonscan.com/apis)
   - [Google AI Studio API](https://aistudio.google.com/)
 
-### Adım Adım Kurulum
+### Step-by-Step Installation
 
-1. **Projeyi Klonlayın**
+1. **Clone the Project**
    ```bash
    git clone https://github.com/your-username/sentinel-sol.git
    cd sentinel-sol
    ```
 
-2. **Bağımlılıkları Yükleyin**
+2. **Install Dependencies**
    ```bash
    npm install
    ```
 
-3. **API Anahtarlarını Ekleyin**
+3. **Add API Keys**
    
-   ⚠️ **Güvenlik Uyarısı**: Asla gerçek API anahtarlarınızı Git'e commit etmeyin!
+   ⚠️ **Security Warning**: Never commit your real API keys to Git!
    
    ```bash
-   # .env.example dosyasını kopyalayın
+   # Copy the .env.example file
    cp .env.example .env
    ```
    
-   `.env` dosyasını editörünüzle açın ve placeholder değerleri değiştirin:
+   Open the `.env` file with your editor and replace the placeholder values:
    
    ```bash
-   VITE_ETHERSCAN_API_KEY=kendi_etherscan_anahtarınız
-   VITE_GEMINI_API_KEY=kendi_gemini_anahtarınız
+   VITE_ETHERSCAN_API_KEY=your_etherscan_api_key
+   VITE_GEMINI_API_KEY=your_gemini_api_key
    ```
 
-4. **Uygulamayı Başlatın**
+4. **Start the Application**
    ```bash
    npm run dev
    ```
 
-5. **Tarayıcıda Açın**
+5. **Open in Browser**
    
-   http://localhost:5173 adresine gidin
+   Go to http://localhost:5173
 
-## 🎯 Demo İçin Kontrat Örnekleri
+## 🎯 Contract Examples for Demo
 
-### Güvenli Kontrat (Düşük Risk)
+### Safe Contract (Low Risk)
 - **Uniswap V2 Router**: `0x7a250d5630b4cf539739df2c5dacb4c659f2488d`
 - **USDC Token**: `0xa0b86a33e6e6d9c08c7c4e26c2d1d3e8eed9a7b6`
 
-### Test Kontratları
-Kendi test kontratlarınızı da analiz edebilirsiniz!
+### Test Contracts
+You can also analyze your own test contracts!
 
-## 🏗️ Teknoloji Stack
+## 🏗️ Technology Stack
 
 - **Frontend**: React 18 + TypeScript + Vite
 - **Styling**: Tailwind CSS
@@ -90,54 +90,54 @@ Kendi test kontratlarınızı da analiz edebilirsiniz!
 - **Build Tool**: Vite
 - **Package Manager**: NPM
 
-## 🔍 AI Analiz Kriterleri
+## 🔍 AI Analysis Criteria
 
-Sentinel.sol aşağıdaki güvenlik açıklarını kontrol eder:
+Sentinel.sol checks for the following security vulnerabilities:
 
-- ✅ Re-entrancy saldırıları
+- ✅ Re-entrancy attacks
 - ✅ Integer overflow/underflow
-- ✅ Kontrolsüz external çağrılar
-- ✅ Gas limit sorunları
-- ✅ Erişim kontrolü problemleri
-- ✅ Merkezileşme riskleri
-- ✅ Deprecated Solidity özellikleri
-- ✅ Potansiyel "rug pull" fonksiyonları
+- ✅ Uncontrolled external calls
+- ✅ Gas limit issues
+- ✅ Access control problems
+- ✅ Centralization risks
+- ✅ Deprecated Solidity features
+- ✅ Potential "rug pull" functions
 
-## 🎨 Ekran Görüntüleri
+## 🎨 Screenshots
 
-![Ana Sayfa](https://via.placeholder.com/600x400/0A0A0A/FFFFFF?text=Ana+Sayfa)
+![Home Page](https://via.placeholder.com/600x400/0A0A0A/FFFFFF?text=Home+Page)
 
-![Analiz Raporu](https://via.placeholder.com/600x400/0A0A0A/FFFFFF?text=Analiz+Raporu)
+![Analysis Report](https://via.placeholder.com/600x400/0A0A0A/FFFFFF?text=Analysis+Report)
 
-## 🤝 Katkıda Bulunma
+## 🤝 Contributing
 
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
-3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
-4. Branch'inizi push edin (`git push origin feature/AmazingFeature`)
-5. Pull Request açın
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📝 Lisans
+## 📝 License
 
-Bu proje MIT Lisansı altında lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## 🏆 Hackathon
 
-Bu proje **ZetaChain & Google Cloud Buildathon** için geliştirilmiştir.
+This project was developed for the **ZetaChain & Google Cloud Buildathon**.
 
-**Jüri Kriterleri:**
-- ✅ **Teknik Yenilik**: AI + Blockchain entegrasyonu
-- ✅ **Pratik Uygulama**: Gerçek dünya sorunu çözümü
-- ✅ **AI Kullanımı**: Google Gemini AI entegrasyonu
-- ✅ **Kullanıcı Deneyimi**: Modern ve kullanıcı dostu arayüz
+**Judging Criteria:**
+- ✅ **Technical Innovation**: AI + Blockchain integration
+- ✅ **Practical Application**: Real-world problem solution
+- ✅ **AI Usage**: Google Gemini AI integration
+- ✅ **User Experience**: Modern and user-friendly interface
 
-## 📞 İletişim
+## 📞 Contact
 
-- **Proje**: Sentinel.sol
+- **Project**: Sentinel.sol
 - **Email**: your-email@example.com
 - **Demo Video**: [YouTube Link]
-- **Canlı Demo**: [Vercel/Netlify Link]
+- **Live Demo**: [Vercel/Netlify Link]
 
 ---
 
-**⚠️ Önemli Not**: Bu araç yalnızca rehberlik amaçlıdır. Büyük miktarlarda işlem yapmadan önce mutlaka profesyonel denetim yaptırın.
+**⚠️ Important Note**: This tool is for guidance purposes only. Always conduct professional audits before making large transactions.

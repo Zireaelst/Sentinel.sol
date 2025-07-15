@@ -1,42 +1,42 @@
-# 🚀 Netlify Deployment Rehberi
+# 🚀 Netlify Deployment Guide
 
-Bu rehber, Sentinel.sol projesini API anahtarlarını leak etmeden Netlify'e deploy etmek için adım adım talimatlar içerir.
+This guide provides step-by-step instructions for deploying the Sentinel.sol project to Netlify without leaking API keys.
 
-## 📋 Ön Gereksinimler
+## 📋 Prerequisites
 
-- [Netlify hesabı](https://netlify.com) (ücretsiz)
+- [Netlify account](https://netlify.com) (free)
 - GitHub/GitLab repository
-- Etherscan V2 API anahtarı
-- Google Gemini AI API anahtarı
+- Etherscan V2 API key
+- Google Gemini AI API key
 
-## 🔐 Güvenli Deployment Adımları
+## 🔐 Secure Deployment Steps
 
-### 1. Repository Hazırlığı
+### 1. Repository Preparation
 
 ```bash
-# Tüm değişiklikleri commit edin
+# Commit all changes
 git add .
 git commit -m "Add Netlify deployment configuration"
 git push origin main
 ```
 
-**ÖNEMLİ**: `.env` dosyası `.gitignore`'da olduğu için Git'e upload edilmeyecek!
+**IMPORTANT**: The `.env` file won't be uploaded to Git because it's in `.gitignore`!
 
-### 2. Netlify'de Site Oluşturma
+### 2. Creating Site on Netlify
 
-1. [Netlify Dashboard](https://app.netlify.com/)'a gidin
-2. **"Add new site"** > **"Import an existing project"** tıklayın
-3. GitHub/GitLab'ı seçin ve repository'nizi bağlayın
+1. Go to [Netlify Dashboard](https://app.netlify.com/)
+2. Click **"Add new site"** > **"Import an existing project"**
+3. Select GitHub/GitLab and connect your repository
 4. **Build settings:**
    - **Build command:** `npm run build`
    - **Publish directory:** `dist`
 
-### 3. Environment Variables Ekleme
+### 3. Adding Environment Variables
 
-**ÖNEMLİ**: API anahtarlarını Netlify dashboard'dan ekleyin, asla kodda yazmayın!
+**IMPORTANT**: Add API keys from the Netlify dashboard, never write them in code!
 
-1. Site dashboard'unda **Site settings** > **Environment variables** gidin
-2. Aşağıdaki environment variables'ları ekleyin:
+1. Go to **Site settings** > **Environment variables** in the site dashboard
+2. Add the following environment variables:
 
 ```
 VITE_ETHERSCAN_API_KEY = your_etherscan_api_key_here
@@ -45,68 +45,68 @@ VITE_ETHERSCAN_V2_API_URL = https://api.etherscan.io/v2/api
 VITE_SUPPORTED_CHAINS = 1,56,137,42161,8453,10,534352,81457
 ```
 
-### 4. Deploy Tetikleme
+### 4. Triggering Deployment
 
-1. **Deploy site** butonuna tıklayın
-2. Build loglarını izleyin
-3. Deploy tamamlandığında site URL'ini alın
+1. Click the **Deploy site** button
+2. Monitor build logs
+3. Get the site URL once deployment is complete
 
-## 🔍 Deployment Sonrası Kontroller
+## 🔍 Post-Deployment Checks
 
-### Güvenlik Kontrolleri:
-- ✅ `.env` dosyası repository'de yok
-- ✅ API anahtarları sadece Netlify environment variables'ında
-- ✅ Build loglarında API anahtarları görünmüyor
-- ✅ Browser console'da güvenlik uyarısı yok
+### Security Checks:
+- ✅ `.env` file not in repository
+- ✅ API keys only in Netlify environment variables
+- ✅ API keys not visible in build logs
+- ✅ No security warnings in browser console
 
-### Fonksiyonellik Testleri:
-- ✅ Site açılıyor
-- ✅ Chain dropdown'ı çalışıyor
-- ✅ Kontrat analizi çalışıyor
-- ✅ AI raporları gösteriliyor
+### Functionality Tests:
+- ✅ Site loads
+- ✅ Chain dropdown works
+- ✅ Contract analysis works
+- ✅ AI reports are displayed
 
-## 📝 Netlify Domain Ayarları
+## 📝 Netlify Domain Settings
 
-### Custom Domain (Opsiyonel):
+### Custom Domain (Optional):
 1. **Site settings** > **Domain management**
-2. **Add custom domain** tıklayın
-3. DNS ayarlarını yapın
+2. Click **Add custom domain**
+3. Configure DNS settings
 
 ### Deploy Hooks:
-Otomatik deploy için webhook URL'si alabilirsiniz.
+You can get webhook URLs for automatic deployment.
 
-## ⚡ Otomatik Deployment
+## ⚡ Automatic Deployment
 
-Her Git push'ta otomatik deploy için:
+For automatic deployment on every Git push:
 1. **Site settings** > **Build & deploy**
-2. **Continuous deployment** aktif olmalı
-3. Branch: `main` seçili olmalı
+2. **Continuous deployment** should be active
+3. Branch: `main` should be selected
 
 ## 🛠️ Troubleshooting
 
-### Build Hataları:
+### Build Errors:
 ```bash
-# Local'de test edin
+# Test locally
 npm run build
 npm run preview
 ```
 
-### Environment Variables Sorunları:
-- Netlify dashboard'da değişken isimlerini kontrol edin
-- VITE_ prefix'i olmadan çalışmaz
-- Deploy sonrası environment variables değişirse redeploy gerekir
+### Environment Variables Issues:
+- Check variable names in Netlify dashboard
+- Won't work without VITE_ prefix
+- Redeploy required if environment variables change after deployment
 
-### API Hataları:
-- Browser console'u kontrol edin
-- Network tab'ında API çağrılarını inceleyin
-- Rate limiting kontrolü yapın
+### API Errors:
+- Check browser console
+- Examine API calls in Network tab
+- Check rate limiting
 
-## 📞 Destek
+## 📞 Support
 
-Deployment sorunları için:
+For deployment issues:
 - [Netlify Support](https://support.netlify.com/)
 - [Netlify Community](https://community.netlify.com/)
 
 ---
 
-**🔒 Güvenlik Notu**: Bu yöntemle API anahtarlarınız tamamen güvenli kalır ve sadece Netlify build process'inde kullanılır.
+**🔒 Security Note**: With this method, your API keys remain completely secure and are only used in the Netlify build process.

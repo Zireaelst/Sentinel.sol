@@ -44,10 +44,10 @@ function App() {
       
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-400">
-          AI Güvenlik Analizörü
+          Sentinel.sol
         </h1>
         <p className="text-gray-400 mt-2 max-w-2xl mx-auto">
-          Bir akıllı kontrat adresini yapıştırın ve Gemini AI'ın potansiyel güvenlik risklerini saniyeler içinde analiz etmesini izleyin.
+          Paste a smart contract address and watch Gemini AI analyze potential security risks in seconds.
         </p>
       </div>
 

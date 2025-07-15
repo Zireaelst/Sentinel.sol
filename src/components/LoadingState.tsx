@@ -24,8 +24,8 @@ export const LoadingState: React.FC<LoadingStateProps> = ({ className = '' }) =>
             fill="currentFill"
           />
         </svg>
-        <p className="mt-4 text-lg font-semibold text-gray-300">Kontrat Analiz Ediliyor...</p>
-        <p className="text-sm text-gray-500">Bu işlem 10-20 saniye sürebilir.</p>
+        <p className="mt-4 text-lg font-semibold text-gray-300">Analyzing Contract...</p>
+        <p className="text-sm text-gray-500">This process may take 10-20 seconds.</p>
       </div>
     </div>
   );

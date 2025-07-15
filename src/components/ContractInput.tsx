@@ -21,7 +21,7 @@ export const ContractInput: React.FC<ContractInputProps> = ({
     if (!address.trim()) return;
     
     if (!address.startsWith('0x') || address.length !== 42) {
-      alert('Lütfen geçerli bir akıllı kontrat adresi girin (0x ile başlamalı ve 42 karakter olmalı).');
+      alert('Please enter a valid smart contract address (must start with 0x and be 42 characters long).');
       return;
     }
 
@@ -36,7 +36,7 @@ export const ContractInput: React.FC<ContractInputProps> = ({
           value={address}
           onChange={(e) => setAddress(e.target.value)}
           className="w-full bg-gray-900 bg-opacity-80 border border-gray-700 rounded-lg p-3 text-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all placeholder-gray-500"
-          placeholder="0x... Akıllı Kontrat Adresi"
+          placeholder="0x... Smart Contract Address"
           disabled={isLoading}
         />
         
@@ -58,7 +58,7 @@ export const ContractInput: React.FC<ContractInputProps> = ({
           disabled={isLoading || !address.trim()}
           className="w-full sm:w-auto shine-button bg-indigo-600 hover:bg-indigo-500 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 flex-shrink-0"
         >
-          {isLoading ? 'Analiz Ediliyor...' : 'Analiz Et'}
+          {isLoading ? 'Analyzing...' : 'Analyze'}
         </button>
       </div>
     </form>

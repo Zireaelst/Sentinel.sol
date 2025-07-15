@@ -1,47 +1,47 @@
-# 🚨 GÜVENLİK UYARISI
+# 🚨 SECURITY WARNING
 
-Bu projeyi klonladıktan sonra aşağıdaki adımları mutlaka uygulayın:
+After cloning this project, you must follow these steps:
 
-## 1. API Anahtarları
+## 1. API Keys
 
 ### Etherscan V2 API
-- https://docs.etherscan.io/v/etherscan-v2 adresine gidin
-- Ücretsiz hesap oluşturun
-- API anahtarınızı alın
+- Go to https://docs.etherscan.io/v/etherscan-v2
+- Create a free account
+- Get your API key
 
 ### Google Gemini AI API  
-- https://aistudio.google.com/ adresine gidin
-- "Get API key" butonuna tıklayın
-- Yeni API anahtarı oluşturun
+- Go to https://aistudio.google.com/
+- Click "Get API key" button
+- Create a new API key
 
-## 2. Environment Variables Kurulumu
+## 2. Environment Variables Setup
 
 ```bash
-# .env.example dosyasını kopyalayın
+# Copy the .env.example file
 cp .env.example .env
 
-# .env dosyasını editörünüzle açın ve kendi API anahtarlarınızı ekleyin
+# Open the .env file with your editor and add your own API keys
 nano .env
 ```
 
-## 3. Güvenlik Kontrolleri
+## 3. Security Checks
 
-- ✅ `.env` dosyası `.gitignore`'da tanımlı
-- ✅ Gerçek API anahtarları Git'e commitlenmez
-- ✅ `.env.example` sadece placeholder değerler içerir
+- ✅ `.env` file is defined in `.gitignore`
+- ✅ Real API keys are not committed to Git
+- ✅ `.env.example` contains only placeholder values
 
-## 4. Demo API Anahtarları
+## 4. Demo API Keys
 
-Bu projede demo amaçlı API anahtarları bulunabilir. Production kullanımında:
+This project may contain demo API keys. For production use:
 
-- ⚠️ Mutlaka kendi API anahtarlarınızı kullanın
-- ⚠️ Rate limiting ve quota kontrollerini unutmayın
-- ⚠️ API anahtarlarını asla public repository'lerde paylaşmayın
+- ⚠️ Always use your own API keys
+- ⚠️ Don't forget rate limiting and quota controls
+- ⚠️ Never share API keys in public repositories
 
 ## 5. Deployment
 
-Vercel, Netlify gibi platformlarda deploy ederken:
+When deploying to platforms like Vercel, Netlify:
 
-- Environment variables'ları platform dashboard'undan ekleyin
-- `.env` dosyasını deploy etmeyin
-- Production için ayrı API anahtarları kullanın
+- Add environment variables from the platform dashboard
+- Do not deploy the `.env` file
+- Use separate API keys for production

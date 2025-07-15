@@ -42,26 +42,26 @@ export const SecurityReportComponent: React.FC<SecurityReportComponentProps> = (
   return (
     <div className={`space-y-6 ${className}`}>
       <div>
-        <h2 className="text-2xl font-bold text-white">Güvenlik Analiz Raporu</h2>
+        <h2 className="text-2xl font-bold text-white">Security Analysis Report</h2>
         <p className="text-sm text-gray-500 font-mono break-all">{contractAddress}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className={`p-4 rounded-xl flex flex-col items-center justify-center text-center ${riskStyle.cardClass}`}>
-          <h3 className="text-sm font-medium text-gray-400 mb-2">TAHMİNİ RİSK SEVİYESİ</h3>
+          <h3 className="text-sm font-medium text-gray-400 mb-2">ESTIMATED RISK LEVEL</h3>
           <p className={`text-2xl font-bold ${riskStyle.textClass}`}>
             {report.riskLevel.toUpperCase()}
           </p>
         </div>
         
         <div className="md:col-span-2 bg-gray-900 bg-opacity-50 p-4 rounded-xl">
-          <h3 className="text-sm font-medium text-gray-400 mb-2">YÖNETİCİ ÖZETİ</h3>
+          <h3 className="text-sm font-medium text-gray-400 mb-2">EXECUTIVE SUMMARY</h3>
           <p className="text-gray-300">{report.summary}</p>
         </div>
       </div>
 
       <div>
-        <h3 className="text-lg font-semibold text-white mb-3">Detaylı Bulgular</h3>
+        <h3 className="text-lg font-semibold text-white mb-3">Detailed Findings</h3>
         <div className="space-y-4">
           {report.findings && report.findings.length > 0 ? (
             report.findings.map((finding, index) => (
@@ -76,7 +76,7 @@ export const SecurityReportComponent: React.FC<SecurityReportComponentProps> = (
           ) : (
             <div className="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-700 border-opacity-50 text-center">
               <p className="text-gray-500">
-                AI herhangi bir spesifik güvenlik açığı bulamadı veya kontrat basit bir yapıya sahip.
+                AI did not find any specific security vulnerabilities or the contract has a simple structure.
               </p>
             </div>
           )}
