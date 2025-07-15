@@ -9,20 +9,14 @@ export interface SecurityFinding {
   description: string;
 }
 
-export interface ApiKeys {
-  ethereum: string;
-  bsc: string;
-  polygon: string;
-  gemini: string;
+export interface ChainConfig {
+  id: number;
+  name: string;
+  displayName: string;
+  explorer: string;
 }
 
-export interface ExplorerApis {
-  ethereum: string;
-  bsc: string;
-  polygon: string;
-}
-
-export type SupportedChain = 'ethereum' | 'bsc' | 'polygon';
+export type SupportedChain = 'ethereum' | 'bsc' | 'polygon' | 'arbitrum' | 'base' | 'optimism' | 'scroll' | 'blast';
 
 export interface AnalysisState {
   isLoading: boolean;

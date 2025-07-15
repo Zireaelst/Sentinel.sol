@@ -49,15 +49,18 @@ Sentinel.sol, Web3 kullanıcılarının akıllı kontratlarla güvenli bir şeki
 
 3. **API Anahtarlarını Ekleyin**
    
-   `src/services/contractAnalysis.ts` dosyasını açın ve `API_KEYS` objesindeki anahtarları güncelleyin:
+   ⚠️ **Güvenlik Uyarısı**: Asla gerçek API anahtarlarınızı Git'e commit etmeyin!
    
-   ```typescript
-   export const API_KEYS: ApiKeys = {
-     ethereum: "YOUR_ETHERSCAN_API_KEY",
-     bsc: "YOUR_BSCSCAN_API_KEY", 
-     polygon: "YOUR_POLYGONSCAN_API_KEY",
-     gemini: "YOUR_GEMINI_API_KEY"
-   };
+   ```bash
+   # .env.example dosyasını kopyalayın
+   cp .env.example .env
+   ```
+   
+   `.env` dosyasını editörünüzle açın ve placeholder değerleri değiştirin:
+   
+   ```bash
+   VITE_ETHERSCAN_API_KEY=kendi_etherscan_anahtarınız
+   VITE_GEMINI_API_KEY=kendi_gemini_anahtarınız
    ```
 
 4. **Uygulamayı Başlatın**

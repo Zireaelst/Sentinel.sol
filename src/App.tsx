@@ -5,6 +5,7 @@ import { InitialState } from './components/InitialState';
 import { LoadingState } from './components/LoadingState';
 import { ErrorState } from './components/ErrorState';
 import { SecurityReportComponent } from './components/SecurityReport';
+import { SecurityWarning } from './components/SecurityWarning';
 import type { SupportedChain } from './types';
 
 function App() {
@@ -39,6 +40,8 @@ function App() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 text-gray-200">
+      <SecurityWarning />
+      
       <div className="text-center mb-8">
         <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-400">
           AI Güvenlik Analizörü

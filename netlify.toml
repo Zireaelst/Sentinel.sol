@@ -1,0 +1,23 @@
+# Netlify deployment settings
+[build]
+  publish = "dist"
+  command = "npm run build"
+
+# Environment variables (configured in Netlify dashboard)
+[build.environment]
+  NODE_VERSION = "18"
+
+# Redirects for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

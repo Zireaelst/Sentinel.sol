@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import type { SupportedChain } from '../types';
+import { CHAIN_CONFIGS } from '../services/contractAnalysis';
 
 interface ContractInputProps {
   onAnalyze: (address: string, chain: SupportedChain) => void;
@@ -45,9 +46,11 @@ export const ContractInput: React.FC<ContractInputProps> = ({
           className="w-full sm:w-auto bg-gray-900 bg-opacity-80 border border-gray-700 rounded-lg p-3 text-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
           disabled={isLoading}
         >
-          <option value="ethereum">Ethereum</option>
-          <option value="bsc">BNB Chain</option>
-          <option value="polygon">Polygon</option>
+          {Object.entries(CHAIN_CONFIGS).map(([key, config]) => (
+            <option key={key} value={key}>
+              {config.displayName}
+            </option>
+          ))}
         </select>
 
         <button
