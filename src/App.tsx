@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { useContractAnalysis } from './hooks/useContractAnalysis';
+import { ContractInput } from './components/ContractInput';
+import { InitialState } from './components/InitialState';
+import { LoadingState } from './components/LoadingState';
+import { ErrorState } from './components/ErrorState';
+import { SecurityReportComponent } from './components/SecurityReport';
+import type { SupportedChain } from './types';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { isLoading, error, report, analyzeContract } = useContractAnalysis();
+  const [lastAnalyzedAddress, setLastAnalyzedAddress] = React.useState('');
+
+  const handleAnalyze = (address: string, chain: SupportedChain) => {
+    setLastAnalyzedAddress(address);
+    analyzeContract(address, chain);
+  };
+
+  const renderContent = () => {
+    if (isLoading) {
+      return <LoadingState />;
+    }
+    
+    if (error) {
+      return <ErrorState message={error} />;
+    }
+    
+    if (report) {
+      return (
+        <SecurityReportComponent 
+          report={report} 
+          contractAddress={lastAnalyzedAddress} 
+        />
+      );
+    }
+    
+    return <InitialState />;
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 text-gray-200">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-400">
+          AI Güvenlik Analizörü
+        </h1>
+        <p className="text-gray-400 mt-2 max-w-2xl mx-auto">
+          Bir akıllı kontrat adresini yapıştırın ve Gemini AI'ın potansiyel güvenlik risklerini saniyeler içinde analiz etmesini izleyin.
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <div className="w-full max-w-3xl glass-card rounded-2xl p-6 md:p-8 shadow-2xl">
+        <ContractInput 
+          onAnalyze={handleAnalyze}
+          isLoading={isLoading}
+        />
+        
+        <div className="mt-8">
+          {renderContent()}
+        </div>
+      </div>
+
+      <footer className="text-center text-gray-600 mt-8 text-sm">
+        <p>ZetaChain & Google Cloud Buildathon | Powered by Gemini AI</p>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
