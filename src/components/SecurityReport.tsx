@@ -16,22 +16,22 @@ export const SecurityReportComponent: React.FC<SecurityReportComponentProps> = (
     switch (riskLevel.toLowerCase()) {
       case 'low':
         return {
-          cardClass: 'bg-green-900/30 border border-green-500/50',
+          cardClass: 'bg-green-900 bg-opacity-30 border border-green-500 border-opacity-50',
           textClass: 'text-green-300'
         };
       case 'medium':
         return {
-          cardClass: 'bg-yellow-900/30 border border-yellow-500/50',
+          cardClass: 'bg-yellow-900 bg-opacity-30 border border-yellow-500 border-opacity-50',
           textClass: 'text-yellow-300'
         };
       case 'high':
         return {
-          cardClass: 'bg-red-900/30 border border-red-500/50',
+          cardClass: 'bg-red-900 bg-opacity-30 border border-red-500 border-opacity-50',
           textClass: 'text-red-300'
         };
       default:
         return {
-          cardClass: 'bg-gray-900/30 border border-gray-500/50',
+          cardClass: 'bg-gray-900 bg-opacity-30 border border-gray-500 border-opacity-50',
           textClass: 'text-gray-300'
         };
     }
@@ -43,7 +43,7 @@ export const SecurityReportComponent: React.FC<SecurityReportComponentProps> = (
     <div className={`space-y-6 ${className}`}>
       <div>
         <h2 className="text-2xl font-bold text-white">Güvenlik Analiz Raporu</h2>
-        <p className="text-sm text-gray-500 font-mono">{contractAddress}</p>
+        <p className="text-sm text-gray-500 font-mono break-all">{contractAddress}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -53,7 +53,8 @@ export const SecurityReportComponent: React.FC<SecurityReportComponentProps> = (
             {report.riskLevel.toUpperCase()}
           </p>
         </div>
-        <div className="md:col-span-2 bg-gray-900/50 p-4 rounded-xl">
+        
+        <div className="md:col-span-2 bg-gray-900 bg-opacity-50 p-4 rounded-xl">
           <h3 className="text-sm font-medium text-gray-400 mb-2">YÖNETİCİ ÖZETİ</h3>
           <p className="text-gray-300">{report.summary}</p>
         </div>
@@ -66,16 +67,18 @@ export const SecurityReportComponent: React.FC<SecurityReportComponentProps> = (
             report.findings.map((finding, index) => (
               <div 
                 key={index}
-                className="bg-gray-900/50 p-4 rounded-lg border border-gray-700/50"
+                className="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-700 border-opacity-50"
               >
-                <h4 className="font-semibold text-white">{finding.title}</h4>
+                <h4 className="font-semibold text-white mb-2">{finding.title}</h4>
                 <p className="text-sm text-gray-400">{finding.description}</p>
               </div>
             ))
           ) : (
-            <p className="text-gray-500 text-center">
-              AI herhangi bir spesifik güvenlik açığı bulamadı veya kontrat basit bir yapıya sahip.
-            </p>
+            <div className="bg-gray-900 bg-opacity-50 p-4 rounded-lg border border-gray-700 border-opacity-50 text-center">
+              <p className="text-gray-500">
+                AI herhangi bir spesifik güvenlik açığı bulamadı veya kontrat basit bir yapıya sahip.
+              </p>
+            </div>
           )}
         </div>
       </div>

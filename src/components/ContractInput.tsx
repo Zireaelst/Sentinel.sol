@@ -34,7 +34,7 @@ export const ContractInput: React.FC<ContractInputProps> = ({
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
-          className="w-full bg-gray-900/80 border border-gray-700 rounded-lg p-3 text-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all placeholder:text-gray-500"
+          className="w-full bg-gray-900 bg-opacity-80 border border-gray-700 rounded-lg p-3 text-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all placeholder-gray-500"
           placeholder="0x... Akıllı Kontrat Adresi"
           disabled={isLoading}
         />
@@ -42,7 +42,7 @@ export const ContractInput: React.FC<ContractInputProps> = ({
         <select
           value={chain}
           onChange={(e) => setChain(e.target.value as SupportedChain)}
-          className="w-full sm:w-auto bg-gray-900/80 border border-gray-700 rounded-lg p-3 text-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
+          className="w-full sm:w-auto bg-gray-900 bg-opacity-80 border border-gray-700 rounded-lg p-3 text-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all"
           disabled={isLoading}
         >
           <option value="ethereum">Ethereum</option>

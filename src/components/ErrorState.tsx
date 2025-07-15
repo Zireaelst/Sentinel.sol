@@ -7,7 +7,7 @@ interface ErrorStateProps {
 
 export const ErrorState: React.FC<ErrorStateProps> = ({ message, className = '' }) => {
   return (
-    <div className={`text-center py-10 bg-red-900/20 border border-red-500/30 rounded-xl ${className}`}>
+    <div className={`text-center py-10 bg-red-900 bg-opacity-20 border border-red-500 border-opacity-30 rounded-xl ${className}`}>
       <svg 
         className="mx-auto h-12 w-12 text-red-400" 
         xmlns="http://www.w3.org/2000/svg" 
