@@ -1,6 +1,6 @@
 import type { SecurityReport, SupportedChain, ChainConfig } from '../types';
 
-// Environment variables'dan API anahtarlarını al
+// Get API keys from environment variables
 const ETHERSCAN_API_KEY = import.meta.env.VITE_ETHERSCAN_API_KEY || "";
 const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "";
 const ETHERSCAN_V2_API_URL = import.meta.env.VITE_ETHERSCAN_V2_API_URL || "https://api.etherscan.io/v2/api";
@@ -57,22 +57,22 @@ export const CHAIN_CONFIGS: Record<SupportedChain, ChainConfig> = {
   }
 };
 
-// API anahtarlarının varlığını kontrol et
+// Check for API key existence
 const validateApiKeys = (): void => {
   if (!ETHERSCAN_API_KEY) {
-    throw new Error("Etherscan API anahtarı bulunamadı. Lütfen .env dosyasında VITE_ETHERSCAN_API_KEY'i ayarlayın.");
+    throw new Error("Etherscan API key not found. Please set VITE_ETHERSCAN_API_KEY in your .env file.");
   }
   if (ETHERSCAN_API_KEY === "YOUR_ETHERSCAN_API_KEY" || ETHERSCAN_API_KEY === "R7Y8WMZIUK69H3FFZAMP59VWW992ARZ58F") {
-    console.warn("⚠️ GÜVENLIK UYARISI: Demo API anahtarı kullanılıyor. Production için kendi anahtarınızı .env dosyasına ekleyin.");
+    console.warn("⚠️ SECURITY WARNING: Using demo API key. Add your own key to .env file for production.");
   }
 };
 
 const validateGeminiApiKey = (): void => {
   if (!GEMINI_API_KEY) {
-    throw new Error("Gemini AI API anahtarı bulunamadı. Lütfen .env dosyasında VITE_GEMINI_API_KEY'i ayarlayın.");
+    throw new Error("Gemini AI API key not found. Please set VITE_GEMINI_API_KEY in your .env file.");
   }
   if (GEMINI_API_KEY === "YOUR_GEMINI_API_KEY" || GEMINI_API_KEY === "AIzaSyARYTXOEnVjXbiUTiEkK2x-rYTpaLirrqc") {
-    console.warn("⚠️ GÜVENLIK UYARISI: Demo API anahtarı kullanılıyor. Production için kendi anahtarınızı .env dosyasına ekleyin.");
+    console.warn("⚠️ SECURITY WARNING: Using demo API key. Add your own key to .env file for production.");
   }
 };
 
@@ -82,7 +82,7 @@ export class ContractAnalysisService {
     
     const chainConfig = CHAIN_CONFIGS[chain];
     if (!chainConfig) {
-      throw new Error(`Desteklenmeyen zincir: ${chain}`);
+      throw new Error(`Unsupported chain: ${chain}`);
     }
 
     // Etherscan V2 API URL with chain ID
@@ -92,7 +92,7 @@ export class ContractAnalysisService {
       const response = await fetch(apiUrl);
       
       if (!response.ok) {
-        throw new Error(`API isteği başarısız: ${response.status} ${response.statusText}`);
+        throw new Error(`API request failed: ${response.status} ${response.statusText}`);
       }
       
       const data = await response.json();
@@ -100,13 +100,13 @@ export class ContractAnalysisService {
       if (data.status === "1" && data.result && data.result[0] && data.result[0].SourceCode) {
         return data.result[0].SourceCode;
       } else {
-        throw new Error(`Kontrat kaynağı bulunamadı. Adresin doğru olduğundan ve kontratın ${chainConfig.displayName} ağında doğrulandığından (verified) emin olun.`);
+        throw new Error(`Contract source not found. Make sure the address is correct and the contract is verified on ${chainConfig.displayName} network.`);
       }
     } catch (error) {
       if (error instanceof Error) {
         throw error;
       }
-      throw new Error("Kontrat kaynağını alırken bilinmeyen bir hata oluştu.");
+      throw new Error("An unknown error occurred while fetching contract source.");
     }
   }
 
@@ -146,7 +146,7 @@ export class ContractAnalysisService {
       2.  \`riskLevel\` must be one of "Low", "Medium", or "High".
       3.  \`summary\` should be easy to understand.
       4.  \`findings\` should be an array. If no specific vulnerabilities are found, return an empty array [].
-      5.  All text in the JSON response MUST be in Turkish.
+      5.  All text in the JSON response MUST be in English.
 
       Here is the smart contract source code to analyze:
       \`\`\`solidity
@@ -167,31 +167,31 @@ export class ContractAnalysisService {
 
       if (!response.ok) {
         const errorBody = await response.text();
-        throw new Error(`Gemini API hatası: ${response.status} ${response.statusText}. Detay: ${errorBody}`);
+        throw new Error(`Gemini API error: ${response.status} ${response.statusText}. Details: ${errorBody}`);
       }
 
       const result = await response.json();
       
       if (!result.candidates || !result.candidates[0] || !result.candidates[0].content) {
-        throw new Error("Gemini API'dan beklenmedik yanıt formatı alındı.");
+        throw new Error("Unexpected response format received from Gemini API.");
       }
       
       const rawText = result.candidates[0].content.parts[0].text;
-      // AI'dan gelebilecek markdown formatını temizle
+      // Clean markdown formatting that might come from AI
       const cleanJsonText = rawText.replace(/^```json\s*|\s*```$/g, '').trim();
       
       return JSON.parse(cleanJsonText);
     } catch (error) {
       if (error instanceof SyntaxError) {
-        console.error("AI'dan gelen JSON parse edilemedi:", error);
-        throw new Error("AI, beklenmedik bir formatta yanıt verdi. Lütfen tekrar deneyin.");
+        console.error("Could not parse JSON from AI response:", error);
+        throw new Error("AI responded in an unexpected format. Please try again.");
       }
       
       if (error instanceof Error) {
         throw error;
       }
       
-      throw new Error("AI analizi sırasında bilinmeyen bir hata oluştu.");
+      throw new Error("An unknown error occurred during AI analysis.");
     }
   }
 
