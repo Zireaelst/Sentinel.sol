@@ -3,7 +3,7 @@
 ![Sentinel.sol Banner](./public/banner.png)
 
 <div align="center">
-  <img src="./public/logo.png" alt="Sentinel.sol Logo" width="200" height="200">
+  <img src="./public/sentinel-logo.png" alt="Sentinel.sol Logo" width="200" height="200">
 </div>
 
 ## 🛡️ What is Sentinel.sol?
@@ -72,13 +72,7 @@ Sentinel.sol is an AI-powered security analyzer that helps Web3 users interact s
    npm run dev
    ```
 
-5. **Add Project Images** (Optional)
-   
-   For the best visual experience, add these images to the `/public` directory:
-   - `banner.png` - Project banner (recommended: 800x200px)
-   - `logo.png` - Project logo (recommended: 200x200px)
-
-6. **Open in Browser**
+5. **Open in Browser**
    
    Go to http://localhost:5173
 
@@ -115,13 +109,14 @@ Sentinel.sol checks for the following security vulnerabilities:
 
 ## 🎨 Screenshots
 
-![Home Page](./public/logo.png)
+![Home Page](./public/mainpage.png)
 *Sentinel.sol Security Analysis Interface*
 
-![Analysis Report](./public/banner.png)
+![Security Information](./public/info.png)
 *AI-Powered Security Analysis Results*
 
-> **Note**: To display images correctly, please add the actual banner.png and logo.png files to the `/public` directory of this project.
+![Application Banner](./public/banner.png)
+*Sentinel.sol - Professional Smart Contract Security Analysis*
 
 ## 🤝 Contributing
 
