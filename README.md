@@ -2,9 +2,6 @@
 
 ![Sentinel.sol Banner](./public/banner.png)
 
-<div align="center">
-  <img src="./public/sentinel-logo.png" alt="Sentinel.sol Logo" width="200" height="200">
-</div>
 
 ## 🛡️ What is Sentinel.sol?
 
@@ -115,8 +112,6 @@ Sentinel.sol checks for the following security vulnerabilities:
 ![Security Information](./public/info.png)
 *AI-Powered Security Analysis Results*
 
-![Application Banner](./public/banner.png)
-*Sentinel.sol - Professional Smart Contract Security Analysis*
 
 ## 🤝 Contributing
 
