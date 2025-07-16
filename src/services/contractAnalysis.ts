@@ -114,25 +114,32 @@ export class ContractAnalysisService {
     validateGeminiApiKey();
     
     const prompt = `
-      TASK: Act as a senior Web3 security auditor. Analyze the following Solidity smart contract source code.
-      
+      TASK: Act as a senior Web3 security auditor. Analyze the following Solidity smart contract source code CAREFULLY and provide an ACCURATE risk assessment.
+
+      CRITICAL INSTRUCTIONS FOR RISK ASSESSMENT:
+      - "Low" risk: Simple, well-established contracts (like basic ERC20 tokens, simple multisigs)
+      - "Medium" risk: Complex contracts with some potential issues but standard patterns (like DEX routers, staking contracts)
+      - "High" risk: Contracts with clear vulnerabilities, centralization risks, or malicious patterns
+
       OBJECTIVE: Identify potential security vulnerabilities, centralization risks, and other logical issues. Then, provide a structured JSON report for a semi-technical user.
 
       VULNERABILITIES TO CHECK FOR (but not limited to):
-      - Re-entrancy
+      - Re-entrancy attacks
       - Integer overflow/underflow
       - Unchecked external calls
-      - Gas limit issues
+      - Gas limit issues  
       - Access control problems (e.g., unprotected functions with critical logic, over-powered owner)
-      - Centralization risks (e.g., owner can drain funds, pausable contracts)
-      - Use of deprecated or unsafe Solidity features.
-      - Potentially malicious logic or "rug pull" functions.
+      - Centralization risks (e.g., owner can drain funds, pausable contracts, upgradeable proxies)
+      - Use of deprecated or unsafe Solidity features
+      - Potentially malicious logic or "rug pull" functions
+      - Insufficient input validation
+      - Front-running vulnerabilities
 
       REQUIRED JSON OUTPUT FORMAT:
       You MUST respond with ONLY a valid JSON object. Do not include "json" or backticks at the beginning or end. The JSON object must have the following structure:
       {
         "riskLevel": "Low" | "Medium" | "High",
-        "summary": "A brief, one or two-sentence summary of the contract's overall security posture.",
+        "summary": "A brief, one or two-sentence summary of the contract's overall security posture and why it received this risk level.",
         "findings": [
           {
             "title": "Clear and concise title of the finding (e.g., 'Re-entrancy Risk in withdraw()')",
@@ -142,11 +149,12 @@ export class ContractAnalysisService {
       }
 
       RULES:
-      1.  Your entire response must be a single, valid JSON object.
-      2.  \`riskLevel\` must be one of "Low", "Medium", or "High".
-      3.  \`summary\` should be easy to understand.
-      4.  \`findings\` should be an array. If no specific vulnerabilities are found, return an empty array [].
-      5.  All text in the JSON response MUST be in English.
+      1. Your entire response must be a single, valid JSON object.
+      2. \`riskLevel\` must be one of "Low", "Medium", or "High".
+      3. \`summary\` should explain WHY this risk level was chosen.
+      4. \`findings\` should be an array. If no specific vulnerabilities are found, return an empty array [].
+      5. All text in the JSON response MUST be in English.
+      6. VARY your risk assessment based on the actual contract complexity and vulnerabilities found.
 
       Here is the smart contract source code to analyze:
       \`\`\`solidity
@@ -177,10 +185,28 @@ export class ContractAnalysisService {
       }
       
       const rawText = result.candidates[0].content.parts[0].text;
-      // Clean markdown formatting that might come from AI
-      const cleanJsonText = rawText.replace(/^```json\s*|\s*```$/g, '').trim();
       
-      return JSON.parse(cleanJsonText);
+      // Clean markdown formatting that might come from AI - more robust cleaning
+      let cleanJsonText = rawText
+        .replace(/^```json\s*/gm, '')  // Remove ```json at start
+        .replace(/^```\s*/gm, '')      // Remove ``` at start  
+        .replace(/\s*```$/gm, '')      // Remove ``` at end
+        .replace(/```\s*$/gm, '')      // Remove ending ```
+        .trim();
+      
+      // If still starts/ends with backticks, remove them
+      if (cleanJsonText.startsWith('```')) {
+        cleanJsonText = cleanJsonText.substring(3);
+      }
+      if (cleanJsonText.endsWith('```')) {
+        cleanJsonText = cleanJsonText.substring(0, cleanJsonText.length - 3);
+      }
+      
+      cleanJsonText = cleanJsonText.trim();
+      
+      const parsedResult = JSON.parse(cleanJsonText);
+      
+      return parsedResult;
     } catch (error) {
       if (error instanceof SyntaxError) {
         console.error("Could not parse JSON from AI response:", error);
